@@ -24,7 +24,7 @@ class AbstractPhpExtension < Formula
       i = IO.popen("#{phpize} -v")
       out = i.readlines.join("")
       i.close
-      { 53 => 20090626, 54 => 20100412, 55 => 20121113, 56 => 20131106, 70 => 20151012, 71 => 20160303, 72 => 20170718 }.each do |v, api|
+      { 56 => 20131106 }.each do |v, api|
         installed_php_version = v.to_s if out.match(/#{api}/)
       end
 
@@ -177,65 +177,11 @@ EOS
   end
 end
 
-class AbstractPhp53Extension < AbstractPhpExtension
-  include AbstractPhpVersion::Php53Defs
-
-  def self.init(opts = [])
-    super()
-    depends_on "php53" => opts if build.with?("homebrew-php")
-  end
-end
-
-class AbstractPhp54Extension < AbstractPhpExtension
-  include AbstractPhpVersion::Php54Defs
-
-  def self.init(opts = [])
-    super()
-    depends_on "php54" => opts if build.with?("homebrew-php")
-  end
-end
-
-class AbstractPhp55Extension < AbstractPhpExtension
-  include AbstractPhpVersion::Php55Defs
-
-  def self.init(opts = [])
-    super()
-    depends_on "php55" => opts if build.with?("homebrew-php")
-  end
-end
-
 class AbstractPhp56Extension < AbstractPhpExtension
   include AbstractPhpVersion::Php56Defs
 
   def self.init(opts = [])
     super()
     depends_on "php56" => opts if build.with?("homebrew-php")
-  end
-end
-
-class AbstractPhp70Extension < AbstractPhpExtension
-  include AbstractPhpVersion::Php70Defs
-
-  def self.init(opts = [])
-    super()
-    depends_on "php70" => opts if build.with?("homebrew-php")
-  end
-end
-
-class AbstractPhp71Extension < AbstractPhpExtension
-  include AbstractPhpVersion::Php71Defs
-
-  def self.init(opts = [])
-    super()
-    depends_on "php71" => opts if build.with?("homebrew-php")
-  end
-end
-
-class AbstractPhp72Extension < AbstractPhpExtension
-  include AbstractPhpVersion::Php72Defs
-
-  def self.init(opts = [])
-    super()
-    depends_on "php" => opts if build.with?("homebrew-php")
   end
 end
